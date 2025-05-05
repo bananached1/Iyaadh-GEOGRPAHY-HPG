@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antarctica: Securing Humanity's Future</title>
+    <link rel="icon" type="image/x-icon" href="/images/images.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #333333;
+            background-color: #f9f9f9;
+            overflow-x: hidden;
+        }
+        
+        .parallax-container {
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .parallax-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 120%;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.6)), url('https://cdnjs.cloudflare.com/ajax/libs/placeholder-images/0.1.1/img/placeholder.png');
+            background-size: cover;
+            background-position: center;
+            transform: translateZ(-1px) scale(2);
+            z-index: -1;
+        }
+        
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 2rem;
+        }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #0078c8;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: #0078c8;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #0096ff;
+        }
+        
+        .hero-title {
+            font-size: 5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #0078c8, #00a0e3);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px rgba(0, 120, 200, 0.3);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            color: #444444;
+        }
+        
+        .btn {
+            padding: 1rem 2.5rem;
+            background: linear-gradient(45deg, #0078c8, #00a0e3);
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem;
+            box-shadow: 0 5px 15px rgba(0, 120, 200, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 120, 200, 0.5);
+        }
+        
+        section {
+            padding: 8rem 2rem;
+            position: relative;
+        }
+        
+        .dark-section {
+            background-color: #eef5f9;
+        }
+        
+        .light-section {
+            background-color: #ffffff;
+        }
+        
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: #0078c8;
+        }
+        
+        .section-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        
+        .resource-card {
+            width: calc(33.33% - 2rem);
+            background: #ffffff;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            transform: translateY(0);
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 120, 200, 0.2);
+        }
+        
+        .card-img {
+            width: 100%;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .card-content {
+            padding: 2rem;
+        }
+        
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #0078c8;
+        }
+        
+        .card-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #555555;
+        }
+
+        .container {
+            max-width: 1000px; /* or whatever max width you want */
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .stats-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 4rem;
+        }
+        
+        .stat-item {
+            width: calc(50% - 2rem);
+            text-align: center;
+            padding: 2rem;
+            background: #ffffff;
+            border-radius: 15px;
+            margin-bottom: 4rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #0078c8, #00a0e3);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .stat-label {
+            font-size: 1.2rem;
+            color: #555555;
+        }
+        
+        .map-container {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            padding-top: 3rem;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .map-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .barriers-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .barrier-item {
+            background: #ffffff;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .barrier-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #0078c8;
+        }
+        
+        .barrier-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #555555;
+        }
+        
+        .conclusion {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .conclusion p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: #555555;
+        }
+        
+        blockquote {
+            font-size: 1.5rem;
+            font-style: italic;
+            line-height: 1.8;
+            margin: 3rem auto;
+            max-width: 800px;
+            padding: 1rem 2rem;
+            border-left: 5px solid #0078c8;
+            color: #333333;
+            background-color: #f5f9fc;
+        }
+        
+        footer {
+            background-color: #0078c8;
+            padding: 3rem 2rem;
+            text-align: center;
+            color: #ffffff;
+        }
+        
+        .footer-text {
+            color: #e0f0ff;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+        
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #ffffff;
+            color: #0078c8;
+            margin: 0 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background: #e0f0ff;
+            transform: translateY(-3px);
+        }
+        
+        @media (max-width: 1200px) {
+            .resource-card {
+                width: calc(50% - 2rem);
+            }
+            .stat-item {
+                width: calc(50% - 2rem);
+                margin-bottom: 2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            .section-title {
+                font-size: 2.5rem;
+            }
+            .resource-card {
+                width: 100%;
+            }
+            .stat-item {
+                width: 100%;
+            }
+            .barriers-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+        .container2 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 50vh;
+            gap: 3rem;
+            flex-flow: column;
+            position: relative;
+        }
+
+        .carousel {
+            max-width: 80%;
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: center;
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
+            }
+            .carousel .item {
+            width: 20%;
+            height: 250px;
+            max-width: 250px;
+            /* background-color: white; */
+            margin: 2px;
+            transition: 0.5s;
+            object-fit: cover;
+            filter: brightness(1);
+            }
+            .carousel .item:hover {
+            filter: brightness(1);
+            transform: translateZ(170px);
+            }
+            .carousel .item:hover + * {
+            filter: brightness(0.6);
+            transform: translateZ(120px) rotateY(25deg);
+            }
+            .carousel .item:hover + * + * {
+            filter: brightness(0.4);
+            transform: translateZ(50px) rotateY(15deg);
+            }
+            .carousel .item:has(+ *:hover) {
+            filter: brightness(0.6);
+            transform: translateZ(120px) rotateY(-25deg);
+            }
+            .carousel .item:has(+ * + *:hover) {
+            filter: brightness(0.4);
+            transform: translateZ(50px) rotateY(-15deg);
+            }
+
+        
+        /* Animation classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 48%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: bounce 2s infinite;
+        }
+        
+        .scroll-indicator span {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            color: #333333;
+        }
+        
+        .scroll-indicator .chevron {
+            width: 20px;
+            height: 20px;
+            border-style: solid;
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 3px;
+            transform: rotate(45deg);
+            border-color: #0078c8;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <a href="#" class="logo">ANTARCTICA</a>
+        <ul class="nav-links">
+            <li><a href="#resources">Resources</a></li>
+            <li><a href="#extraction">Extraction</a></li>
+            <li><a href="#justification">Justification</a></li>
+            <li><a href="#conclusion">Conclusion</a></li>
+        </ul>
+    </nav>
+    
+    <div class="parallax-container">
+        <div class="parallax-bg"></div>
+        <header>
+            <h1 class="hero-title">ANTARCTICA</h1>
+            <h2 class="hero-subtitle">The role of Antarctica in securing Humanity's future and its global impact</h2>
+            <div>
+                <a href="#imgcaro" class="btn">Explore Images</a>
+                <a href="#conclusion" class="btn">Learn More</a>
+            </div>
+            <div class="scroll-indicator">
+                <span>Scroll to discover</span>
+                <i class="chevron"></i>
+            </div>
+        </header>
+    </div>
+    
+    <section id="resources" class="dark-section">
+        <h2 class="section-title fade-in">Untapped Resources</h2>
+        <div class="section-content">
+            <div class="resource-card fade-in">
+                <div class="card-img" style="background-image: url('images/Freshwater.webp');"></div>
+                <div class="card-content">
+                    <h3 class="card-title">Fresh Water</h3>
+                    <p class="card-text">Antarctica holds 70% of the world's fresh-water reserves, a critical resource as over 2.2 billion people lack adequate access to water today, with half the world's population living in water-stressed areas.</p>
+                </div>
+            </div>
+            <div class="resource-card fade-in">
+                <div class="card-img" style="background-image: url('images/oil.jpg');"></div>
+                <div class="card-content">
+                    <h3 class="card-title">Oil & Natural Gas</h3>
+                    <p class="card-text">Antarctica is estimated to harbor nearly 48 billion barrels of oil and 115 trillion cubic feet of natural gas, enough to fuel the world for nearly half a decade.</p>
+                </div>
+            </div>
+            <div class="resource-card fade-in">
+                <div class="card-img" style="background-image: url('images/01_BAM_Antarctica_Sandvik_QJ341_001-6eeafd72468b65b6.jpeg');"></div>
+                <div class="card-content">
+                    <h3 class="card-title">Precious Metals</h3>
+                    <p class="card-text">The continent has vast amounts of high-value ores, including gold, coal, and chromium, which are crucial in most industrial processes.</p>
+                </div>
+            </div>
+        </div>    
+
+        <div class="container">
+            <div class="stats-container">
+                <div class="stats-container">
+                    <div class="stat-item fade-in">
+                        <div class="stat-number">70%</div>
+                        <div class="stat-label">of Global Freshwater</div>
+                    </div>
+                    <div class="stat-item fade-in">
+                        <div class="stat-number">48B</div>
+                        <div class="stat-label">Barrels of Oil</div>
+                    </div>
+                    <div class="stat-item fade-in">
+                        <div class="stat-number">115T</div>
+                        <div class="stat-label">Cubic Feet of Natural Gas</div>
+                    </div>
+                    <div class="stat-item fade-in">
+                        <div class="stat-number">7</div>
+                        <div class="stat-label">Nations with Territorial Claims</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+    <section id="claims" class="light-section">
+        <h2 class="section-title fade-in">Territorial Claims</h2>
+        <div class="map-container fade-in">
+            <img src="images/governed_claims1.png" alt="Antarctica Territorial Claims Map" class="map-img">
+        </div>
+        <blockquote class="fade-in">
+            "Watch this spot" may not only provide an apt summary of the continent today, but a foreshadowment of events to come.
+        </blockquote>
+    </section>
+
+    <div class="container2" id="imgcaro">
+        <div class="carousel">
+          <img
+            class="item"
+            src="images/antarctica-penguins.jpg"
+            alt="Polar Bear on Pack Ice"
+          />
+          <img
+            class="item"
+            src="images/images (1).jpeg"
+            alt="Arctic Fox in Winter Coat"
+          />
+          <img
+            class="item"
+            src="images/images.jpeg"
+            alt="Inuit Woman in Traditional Clothing"
+          />
+          <img
+            class="item"
+            src="images/more-peaks-SL.jpeg"
+            alt="Siberian Husky in Snow"
+          />
+          <img
+            class="item"
+            src="images/snow-capped-mountains-antarctica-shutterstock-secret-atlas.jpg"
+            alt="Arctic Explorer in Snowy Landscape"
+          />
+        </div>
+      </div>
+      
+    
+    <section id="extraction" class="dark-section">
+        <h2 class="section-title fade-in">Extraction Challenges</h2>
+        <div class="section-content">
+            <div class="barriers-grid">
+                <div class="barrier-item fade-in">
+                    <h3 class="barrier-title">Infrastructure</h3>
+                    <p class="barrier-text">With essentially no permanent population or existing infrastructure, building extraction facilities would require enormous investment in transportation, housing, and heating for workers in extreme conditions.</p>
+                </div>
+                <div class="barrier-item fade-in">
+                    <h3 class="barrier-title">Cost</h3>
+                    <p class="barrier-text">Building an oil-extraction complex in Antarctica would cost upwards of $40 billion, requiring a workforce of approximately 70,000 personnel over a 3-year period.</p>
+                </div>
+                <div class="barrier-item fade-in">
+                    <h3 class="barrier-title">Legal Constraints</h3>
+                    <p class="barrier-text">The Madrid Protocol prohibits mining and extraction of any resource in Antarctica, though ambiguities in the treaty could potentially be exploited through different interpretations.</p>
+                </div>
+                <div class="barrier-item fade-in">
+                    <h3 class="barrier-title">Environmental Impact</h3>
+                    <p class="barrier-text">Extraction operations risk complete annihilation of one of the most remarkable and fragile ecosystems on earth through inevitable oil spills and pollution.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="justification" class="light-section">
+        <h2 class="section-title fade-in">Is Resource Extraction Justifiable?</h2>
+        <div class="section-content">
+            <div class="conclusion fade-in">
+                <p>As climate change already begins to have a devastating impact on billions of people, we must carefully consider whether exploiting Antarctica's resources is morally justifiable.</p>
+                <p>The Madrid Protocol was formed to keep Antarctica as the continent untouched by mankind — free from our aggressive tendency to expand, conquer, and subjugate every corner of land we see fit for development.</p>
+                <p>Any resources extracted are likely to be done so by high-income nations, only fueling more of the global crisis of climate change rather than being invested in low-income regions that require it to sustain their populations amid suffering the worst consequences of climate change.</p>
+                <p>Resource extraction, whether from Antarctica or elsewhere, may not be the solution. Rather, we should investigate resource management as a means of finding a solution; after all, infinite growth is simply not possible in a finite world.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="conclusion" class="dark-section">
+        <h2 class="section-title fade-in">Conclusion</h2>
+        <div class="section-content">
+            <div class="conclusion fade-in">
+                <p>Antarctica's geographical and economic value is innately tied with the future of humanity. The frozen continent highlights the multitude of challenges that we face as a species, and provides a compelling argument for why we must take action today.</p>
+                <blockquote>
+                    "The journey of a thousand miles begins with a single step." <br>- Sun Tzu
+                </blockquote>
+                <p>We must ensure that we take that step hastily, but with wisdom and foresight for the generations to come.</p>
+                <a href="#" class="btn">Take Action Now</a>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <p class="footer-text">© 2025 Antarctica: Securing Humanity's Future</p>
+        <p class="footer-text">An analysis of human geographical factors and dynamics in Antarctica today, and how its global impact will shape the future of humanity.</p>
+        <div class="social-links">
+            <a href="#" class="social-icon">🌐</a>
+            <a href="#" class="social-icon">📱</a>
+            <a href="#" class="social-icon">📧</a>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Fade-in animation on scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        function checkFade() {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('active');
+                }
+            });
+        }
+        
+        // Nav bar color change on scroll
+        const nav = document.querySelector('nav');
+        
+        function checkScroll() {
+            if (window.scrollY > 50) {
+                nav.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                nav.style.padding = '1rem 2rem';
+            } else {
+                nav.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+                nav.style.padding = '1.5rem 2rem';
+            }
+        }
+        
+        // Initialize
+        checkFade();
+        checkScroll();
+        
+        // Event listeners
+        window.addEventListener('scroll', checkFade);
+        window.addEventListener('scroll', checkScroll);
+    </script>
+</body>
+</html>
